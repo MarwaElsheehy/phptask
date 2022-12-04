@@ -1,4 +1,5 @@
 <?php
+// Day 1
 // phpinfo();
 // const website = "http://localhost/phptask/test.php";
 // echo website ."<br>";
@@ -24,7 +25,7 @@
 //     default:
 //     echo"other";
 // }
-//Day 2
+// Day 2
 echo nl2br("say \n hello");
 echo"<br>";
 //
