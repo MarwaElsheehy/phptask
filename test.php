@@ -25,9 +25,8 @@
 //     echo"other";
 // }
 //Day 2
-$x = 1;
-$y = 2;
-echo "$x \r\n $y";
+echo nl2br("say \n hello");
+echo"<br>";
 //
 // $str = addcslashes("Hello World!","W");
 // echo($str);
@@ -37,6 +36,9 @@ echo "$x \r\n $y";
 // echo $str . "<br>";
 // echo chop($str,"World!");
 //
+// echo"<pre>";
+// print_r($_SERVER);
+// echo"</pre>";
 $numbers = [12, 45, 10, 25];
 echo $numbers[0];
 echo"<br>";
