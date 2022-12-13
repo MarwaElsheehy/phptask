@@ -91,17 +91,17 @@
 /////////////////////////////////////////////////////////////////////
 //Day 3
 //part one
-if(!empty($_POST["name"]) && !empty($_POST["mail"]) && !empty($_POST["group"]) && !empty($_POST["text"]) && !empty($_POST["agree"]) && !empty($_POST["gender"]) && !empty($_POST["courses"])){
-  echo "Name". $_POST['name'];
-  echo "E-mail". $_POST['mail'];
-  echo "Group". $_POST['group'];
-  echo "Class details". $_POST['text'];
-  echo "Gender". $_POST['gender'];
-  echo "Your courses". $_POST['courses'];
-}
+// if(!empty($_POST["name"]) && !empty($_POST["mail"]) && !empty($_POST["group"]) && !empty($_POST["text"]) && !empty($_POST["agree"]) && !empty($_POST["gender"]) && !empty($_POST["courses"])){
+//   echo "Name". $_POST['name'];
+//   echo "E-mail". $_POST['mail'];
+//   echo "Group". $_POST['group'];
+//   echo "Class details". $_POST['text'];
+//   echo "Gender". $_POST['gender'];
+//   echo "Your courses". $_POST['courses'];
+// }
 //
-$nameErr = $mailErr = $genderErr = $agreeErr = $textErr = $coursesErr = $groupErr = "";
 $name = $mail = $agree = $gender = $text = $courses = $group = "";
+$nameErr = $mailErr = $agreeErr = $genderErr = $textErr = $coursesErr = $groupErr = "";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   if(empty($_POST['name'])){
     $nameErr = "Name is required";
@@ -114,7 +114,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $mail = test_input($_POST["mail"]);
   }
   if (empty($_POST["agree"])) {
-    $agreeErr = "";
+    $agreeErr = "Agree is required";
   } else {
     $agree = test_input($_POST["agree"]);
   }
@@ -158,45 +158,12 @@ echo "Gender:".$gender;
 echo "<br>";
 echo "Your courses:".$courses;
 echo "<br>";
-//
-//part two
-$students = array(
-  array(
-    'name' => 'Alaa',
-    'email' => 'ahmed@test.com', 
-    'status' => 'Science',
-  ),
-  array(
-    'name' => 'Shamy', 
-    'email' => 'ali@test.com', 
-    'status' => 'AAST',
-  ),
-  array(
-    'name' => 'Youssef', 
-    'email' => 'basem@test.com', 
-    'status' => 'AAST',
-  ),
-  array(
-    'name' => 'Waleid', 
-    'email' => 'farouk@test.com', 
-    'status' => 'Science',
-  ),
-  array(
-    'name' => 'Rahma', 
-    'email' => 'hany@test.com', 
-    'status' => 'AAST',
-  )
-);
-// print_r($students);
-// $no = 0;
-// foreach($students as $s){
-// }
-// $no = $no + 1;
 ?>
 <html>
     <head>
     <style>
      .error {color: #FF0000;}
+     form {width: 200px;}
     </style>
     </head>
     <body>
@@ -215,63 +182,51 @@ $students = array(
     <label for="">Class details</label>
     <textarea name="text" id="" rows="5"></textarea>
     <br><br>
-    <label for="" name="gender">Gender</label>
-    <input type="radio" name="male">
-    <label for="">Male</label>
-    <input type="radio" name="female">
-    <label for="">Female</label>
+    Gender
+    <input type="radio" name="gender" value="female">Female
+    <input type="radio" name="gender" value="male">Male
     <span class="error">* <?php echo $genderErr;?></span>
     <br><br>
-    <label for="" name="courses">Select courses</label>
-    <select>
+    <!-- <label for="" name="courses">Select courses</label> -->
+    <!-- <select multiple>
       <option value="php">PHP</option>
       <option value="js">Java Script</option>
       <option value="mysql">MySQL</option>
       <option value="html">HTML</option>
-    </select>
+    </select> -->
+    Select courses<br>
+    <input type="checkbox" name="courses">PHP<br>
+    <input type="checkbox" name="courses">Java Script<br>
+    <input type="checkbox" name="courses">MySQL<br>
+    <input type="checkbox" name="courses">HTML
     <br><br>
     Agree <input type="checkbox" name="agree">
     <span class="error">* <?php echo $agreeErr;?></span>
     <br><br>
     <input type="Submit">
     </form>
-    <table>
-      <tr>
-        <td>name</td>
-        <td>email</td>
-        <td>status</td>
-      </tr>
-      <!-- <tr>
-        <td><?php echo $no;?></td>
-        <td><?php echo $s['name'];?></td>
-        <td><?php echo $s['email'];?></td>
-        <td><?php echo $s['status'];?></td>
-      </tr> -->
-      <tr>
-        <td style="color:red;"><?php echo $students[0]['name'];?></td>
-        <td style="color:red;"><?php echo $students[0]['email'];?></td>
-        <td style="color:red;"><?php echo $students[0]['status'];?></td>
-      </tr>
-      <tr>
-        <td><?php echo $students[1]['name'];?></td>
-        <td><?php echo $students[1]['email'];?></td>
-        <td><?php echo $students[1]['status'];?></td>
-      </tr>
-      <tr>
-        <td><?php echo $students[2]['name'];?></td>
-        <td><?php echo $students[2]['email'];?></td>
-        <td><?php echo $students[2]['status'];?></td>
-      </tr>
-      <tr>
-        <td style="color:red;"><?php echo $students[3]['name'];?></td>
-        <td style="color:red;"><?php echo $students[3]['email'];?></td>
-        <td style="color:red;"><?php echo $students[3]['status'];?></td>
-      </tr>
-      <tr>
-        <td><?php echo $students[4]['name'];?></td>
-        <td><?php echo $students[4]['email'];?></td>
-        <td><?php echo $students[4]['status'];?></td>
-      </tr>
-    </table>
-    </body>
 </html>
+<?php
+$students = [
+  ['name' => 'Alaa', 'email' => 'ahmed@test.com', 'status' => 'Science'],
+  ['name' => 'Shamy', 'email' => 'ali@test.com', 'status' => 'AAST'],
+  ['name' => 'Youssef', 'email' => 'basem@test.com', 'status' => 'AAST'],
+  ['name' => 'Waleid', 'email' => 'farouk@test.com', 'status' => 'Science'],
+  ['name' => 'Rahma', 'email' => 'hany@test.com', 'status' => 'AAST'],
+];
+echo " <h1>Application name</h1>";
+echo "<table>";
+echo "<th>Name</th>" , "<th>Email</th>" , "<th>status</th>";
+foreach($students as $var){
+  if($var['status']=='Science'){
+      echo "<tr style = 'color:red;'>";
+   }else{
+       echo "<tr>";
+   }
+  echo "<td>".$var['name'] . "<br>" . "</td>";
+  echo "<td>".$var['email'] . "<br>" . "</td>";
+  echo "<td>".$var['status'] . "<br>" . "</td>";
+  echo "</tr>";
+}
+echo"</table>";
+?>
